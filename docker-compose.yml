@@ -6,13 +6,14 @@ services:
 
   ghost:
     image: ghost:latest
+    hostname: caghost
     restart: always
     ports:
       - 12368:2368
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       - database__client=mysql
-      - database__connection__host
+      - database__connection__host=cadb
       - database__connection__user=root
       - database__connection__password
       - database__connection__database=ghost
@@ -26,15 +27,24 @@ services:
       - server__host=0.0.0.0
     volumes:
       - ca-ghost:/var/lib/ghost/content
+    networks:
+      - utilities
 
   db:
     image: mysql:8.0
+    hostname: cadb
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD
+      - MYSQL_ROOT_PASSWORD=example
     volumes:
       - ca-ghost-db:/var/lib/mysql
+    networks:
+    - utilities
 
 volumes:
   ca-ghost:
   ca-ghost-db:
+
+networks:
+  utilities:
+    external: true
