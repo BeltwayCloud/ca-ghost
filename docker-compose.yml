@@ -8,7 +8,7 @@ services:
     image: ghost:latest
     restart: always
     ports:
-      - 98080:2368
+      - 12368:2368
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       - database__client=mysql
