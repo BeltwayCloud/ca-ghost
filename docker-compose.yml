@@ -39,7 +39,7 @@ services:
     volumes:
       - ca-ghost-db:/var/lib/mysql
     networks:
-    - utilities
+      - utilities
 
 volumes:
   ca-ghost:
