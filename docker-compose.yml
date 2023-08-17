@@ -35,7 +35,7 @@ services:
     hostname: cadb
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=example
+      - MYSQL_ROOT_PASSWORD
     volumes:
       - ca-ghost-db:/var/lib/mysql
     networks:
