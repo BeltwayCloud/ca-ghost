@@ -1,5 +1,6 @@
 # CivicActions Ghost Example Compose
 # Repo: https://github.com/BeltwayCloud/ca-ghost
+# Demo of CA website ghost deployment
 version: '3.1'
 
 services:
