@@ -1,0 +1,40 @@
+# CivicActions Ghost Example Compose
+# Repo: https://github.com/BeltwayCloud/ca-ghost
+version: '3.1'
+
+services:
+
+  ghost:
+    image: ghost:latest
+    restart: always
+    ports:
+      - 98080:2368
+    environment:
+      # see https://ghost.org/docs/config/#configuration-options
+      - database__client=mysql
+      - database__connection__host=db
+      - database__connection__user=root
+      - database__connection__password
+      - database__connection__database=ghost
+      - url
+      - mail__options__port=465
+      - mail__from
+      - mail__transport=SMTP
+      - mail__options__auth__pass
+      - mail__options__service=Gmail
+      - server__port=2368
+      - server__host=0.0.0.0
+    volumes:
+      - ca-ghost:/var/lib/ghost/content
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD
+    volumes:
+      - ca-ghost-db:/var/lib/mysql
+
+volumes:
+  ca-ghost:
+  ca-ghost-db:
